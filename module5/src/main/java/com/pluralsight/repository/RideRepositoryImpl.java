@@ -33,7 +33,7 @@ public class RideRepositoryImpl implements RideRepository {
 		//jdbcTemplate.update("insert into ride (name,duration) values (?,?)", ride.getName(), ride.getDuration());
 		
 		// simpleJdbcInsert
-		/*
+		
 		SimpleJdbcInsert insert = new SimpleJdbcInsert(jdbcTemplate);
 		List <String> columns= new ArrayList<>();
 		columns.add("name");
@@ -47,12 +47,12 @@ public class RideRepositoryImpl implements RideRepository {
 		
 		insert.setGeneratedKeyName("id");
 		
-		Number key = insert.executeAndReturnKey(data);
+		Number id = insert.executeAndReturnKey(data);
 		
-		System.out.println(key);
+		System.out.println(id);
 		
-		*/
-		
+
+		/*
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			
@@ -67,6 +67,7 @@ public class RideRepositoryImpl implements RideRepository {
 		}, keyHolder);
 		
 		Number id=keyHolder.getKey();
+		*/
 		
 		return getRide(id.intValue());
 	}
