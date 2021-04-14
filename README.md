@@ -4,10 +4,10 @@
 * mysql datasource xml configuration
 ```
 <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-		<property name="url" value="jdbc:mysql://localhost:3306/ride_tracker"/>
-		<property name="username" value="root"/>
-		<property name="password" value="pass"/>
+	<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+	<property name="url" value="jdbc:mysql://localhost:3306/ride_tracker?useSSL=false"/>
+	<property name="username" value="root"/>
+	<property name="password" value="pass"/>
 </bean>
 ```
 * JdbcTemplate bean xml configuration
@@ -25,3 +25,5 @@
 	<version>4.3.6.RELEASE</version>
 </dependency>
 ```
+### Module 4
+* JDBC template is using the perparedStatement
