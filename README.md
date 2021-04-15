@@ -95,3 +95,24 @@ public Ride getRide(Integer id) {
 	}
 ```
 ### Module 6
+* update: jdbcTemplate.update
+* batchUpdate: jdbcTemplate.batchUpdate
+```
+public void batch() {
+	List <Ride> rides = rideRepository.getRides();
+	List<Object[]> pairs = new ArrayList<>();
+		
+	for (Ride ride : rides) {
+		Object[] tmp = {new Date(), ride.getId()};
+		pairs.add(tmp);
+	}
+		
+	rideRepository.updaterRides(pairs);
+		
+	}
+
+public void updaterRides(List<Object[]> pairs) {
+	jdbcTemplate.batchUpdate(
+		"update ride set ride_date = ? where id= ?", pairs);
+}
+```
