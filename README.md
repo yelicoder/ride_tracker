@@ -27,8 +27,12 @@
 ```
 ### Module 4
 * JDBC template is using the perparedStatement
+* SimpleJdbcCall and SimpleJdbcInsert simulate an ORM. data are put into a map. SimpleJdbcInsert will set table and columns
+* Create: jdbcTemplate.update
 ### Module 5
-* Use RowMapper to get the query results
+* Query for one object: jdbcTemplate.queryForObject
+* Query for multiple objects: jdbcTemplate.query
+* Use RowMapper to covert resultset to an object
 ```
 List<Ride> rides = jdbcTemplate.query("select * from ride", new RowMapper<Ride> () {
 			
@@ -45,7 +49,7 @@ List<Ride> rides = jdbcTemplate.query("select * from ride", new RowMapper<Ride> 
 ```
 ride = restTemplate.postForObject("http://localhost:8080/ride_tracker/ride", ride, Ride.class);	
 ```
-* Use external RowMapper
+* Use external RowMapper to use the rowMapper across methods
 ```
 List<Ride> rides = jdbcTemplate.query("select * from ride", new RideRowMapper());
 
@@ -122,6 +126,7 @@ public void updaterRides(List<Object[]> pairs) {
 * NamedparameterJdbcTemplate is less error prone if there are many parameters in the sql statement that could cause mess up of mapping the parameter with their value.
 
 ### Module8
+* Data exception thrown from Spring are RuntimeExceptions
 * @ExceptionHandler in Controller handles RuntimeExceptions and return gracefully the http response
 ```
 @ExceptionHandler(RuntimeException.class)
