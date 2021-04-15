@@ -116,3 +116,29 @@ public void updaterRides(List<Object[]> pairs) {
 		"update ride set ride_date = ? where id= ?", pairs);
 }
 ```
+### Module7
+* delete: jdbcTemplate.update and restTemplate.delete
+* Sequence of code change: test, controller, service, serviceimpl, repository, repositoryimpl
+* NamedparameterJdbcTemplate is less error prone if there are many parameters in the sql statement that could cause mess up of mapping the parameter with their value.
+
+### Module8
+* @ExceptionHandler in Controller handles RuntimeExceptions and return gracefully the http response
+```
+@ExceptionHandler(RuntimeException.class)
+public ResponseEntity<ServiceError> handle(RuntimeException ex){
+	ServiceError error = new ServiceError(HttpStatus.OK.value(), ex.getMessage());
+	return new ResponseEntity<>(error, HttpStatus.OK);
+}
+```
+* DataSourceTransactionManager for transaction management
+```
+xmlns:tx="http://www.springframework.org/schema/tx"
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+
+<tx:annotation-driven transaction-manager="transactionManager"/>
+	
+<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<property name="dataSource" ref="dataSource" />
+</bean>
+```
+
